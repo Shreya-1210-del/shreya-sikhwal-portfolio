@@ -1,97 +1,95 @@
-"use client";
+# Shreya Sikhwal — Portfolio
 
-import { profile, stats } from "@/lib/data";
+![Next.js](https://img.shields.io/badge/Next.js-14-000000?logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3-38BDF8?logo=tailwindcss&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
-const points = [
-  { x: 40, y: 210 },
-  { x: 220, y: 120 },
-  { x: 400, y: 150 },
-  { x: 580, y: 40 },
-];
+> I turn spreadsheets nobody wants to open into decisions someone has to make.
 
-const path = `M${points[0].x},${points[0].y} L${points[1].x},${points[1].y} L${points[2].x},${points[2].y} L${points[3].x},${points[3].y}`;
+Personal portfolio of **Shreya Sikhwal** — a CS & Business Systems undergraduate building data pipelines, dashboards, and decision-ready insight from real-world datasets (SQL, Python, Streamlit, Tableau, Power BI).
 
-export default function Hero() {
-  return (
-    <section id="top" className="relative overflow-hidden pt-36 pb-20 md:pt-48 md:pb-28">
-      <div className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_0%,transparent_70%)]" />
+**Case studies covered:** a 1.26M-row banking risk analysis, a 190-country global education inequality dashboard, and an 8,000-title Netflix content analytics pipeline.
 
-      <div className="relative mx-auto max-w-6xl px-6 md:px-10">
-        <p className="eyebrow flex items-center gap-2 text-signal-cyan">
-          <span className="inline-block h-1.5 w-1.5 animate-blink rounded-full bg-signal-cyan" />
-          DATA SCIENCE &amp; ANALYTICS · {profile.location.toUpperCase()}
-        </p>
+---
 
-        <h1 className="font-display mt-6 max-w-4xl text-balance text-4xl font-bold leading-[1.08] text-paper-100 sm:text-5xl md:text-6xl">
-          {profile.tagline}
-        </h1>
+## Table of contents
 
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-paper-400 md:text-lg">
-          {profile.summary}
-        </p>
+- [Role & design direction](#role--design-direction)
+- [Tech stack](#tech-stack)
+- [Project structure](#project-structure)
+- [Local setup](#local-setup)
+- [Editing content](#editing-content)
+- [Notes](#notes)
+- [License](#license)
 
-        <div className="mt-9 flex flex-wrap items-center gap-4">
-          <a
-            href="#work"
-            className="rounded-full bg-signal-cyan px-6 py-3 text-sm font-semibold text-ink-950 transition-transform hover:-translate-y-0.5"
-          >
-            View the work
-          </a>
-          <a
-            href={`mailto:${profile.email}`}
-            className="rounded-full border border-ink-600 px-6 py-3 text-sm font-semibold text-paper-200 transition-colors hover:border-signal-cyan hover:text-signal-cyan"
-          >
-            Get in touch
-          </a>
-        </div>
+## Role & design direction
 
-        {/* Signature element: a schematic sparkline stitched from the three
-            flagship datasets, doubling as quick navigation into each project. */}
-        <div className="mt-20">
-          <p className="eyebrow mb-4 text-paper-400">Three datasets, one throughline</p>
-          <svg
-            viewBox="0 0 640 240"
-            className="h-40 w-full max-w-3xl md:h-52"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d={path}
-              stroke="url(#lineGradient)"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeDasharray="1000"
-              className="animate-draw-line"
-            />
-            <defs>
-              <linearGradient id="lineGradient" x1="0" y1="0" x2="640" y2="0">
-                <stop offset="0%" stopColor="#F0665C" />
-                <stop offset="55%" stopColor="#F4A340" />
-                <stop offset="100%" stopColor="#4FD1E5" />
-              </linearGradient>
-            </defs>
-            {points.map((p, i) => (
-              <circle key={i} cx={p.x} cy={p.y} r="5" fill="#0A0E14" stroke="#EDEFF2" strokeWidth="1.5" />
-            ))}
-          </svg>
+- **Track:** Data Scientist / Analytics (entry-level, internship-seeking).
+- **Why:** the underlying resume and LinkedIn content is strongest in SQL analytics (window functions, CTEs over million-row datasets), exploratory data analysis, and multi-tool dashboard delivery — the core signal is "insight from data," so the site is built visual and metric-forward rather than systems/infra-styled.
+- **Palette:** ink navy (`#0A0E14`) base with three data-encoding accents — cyan `#4FD1E5`, amber `#F4A340`, coral `#F0665C` — one per featured project, used the way a chart legend would.
+- **Type:** Space Grotesk (display), JetBrains Mono (data/labels), Inter (body).
+- **Signature element:** an animated sparkline in the hero, built from the three flagship datasets, doubling as quick navigation into each case study.
 
-          <div className="mt-3 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {stats.map((s) => (
-              <a
-                key={s.tag}
-                href={`#${s.tag}`}
-                className="group border-t border-ink-600 pt-3 transition-colors hover:border-signal-cyan"
-              >
-                <p className="font-mono text-xl font-medium text-paper-100 group-hover:text-signal-cyan md:text-2xl">
-                  {s.value}
-                </p>
-                <p className="mt-1 text-xs text-paper-400">{s.label}</p>
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+## Tech stack
+
+- [Next.js 14](https://nextjs.org/) — App Router, TypeScript
+- [Tailwind CSS](https://tailwindcss.com/) — utility-first styling, custom design tokens
+- No external UI kits, no CMS, no environment variables — all content lives in one typed file
+
+## Project structure
+
+```
+shreya-portfolio/
+├── app/
+│   ├── layout.tsx        # Root layout, fonts, metadata
+│   ├── page.tsx           # Section assembly
+│   └── globals.css        # Design tokens & base styles
+├── components/
+│   ├── Nav.tsx
+│   ├── Hero.tsx            # Signature sparkline + intro
+│   ├── About.tsx
+│   ├── Projects.tsx        # 3 featured case studies
+│   ├── Experience.tsx
+│   ├── Skills.tsx          # Toolkit + achievements
+│   ├── Contact.tsx
+│   └── Reveal.tsx          # Scroll-reveal wrapper
+├── lib/
+│   └── data.ts             # All resume/LinkedIn content, structured
+├── tailwind.config.ts
+├── postcss.config.js
+├── next.config.js
+├── tsconfig.json
+└── package.json
+```
+
+## Local setup
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+**Production build:**
+
+```bash
+npm run build
+npm run start
+```
+
+## Editing content
+
+All copy — name, tagline, projects, experience, skills, achievements, and contact links — lives in a single file: `lib/data.ts`. Update it there and every section re-renders automatically. No other file needs to change to update content.
+
+## Notes
+
+- Dark theme by default (`class="dark"` on `<html>`) — built as one considered dark palette rather than a light/dark toggle, in line with the analytical/dashboard direction.
+- Fonts load via Google Fonts `<link>` tags in `app/layout.tsx` (not `next/font`), so builds never depend on network access to Google's font API at build time — only the browser needs it at runtime, with system-font fallbacks defined in `globals.css`.
+- No phone number is published on the public site; email and LinkedIn are the primary contact channels.
+- Fully responsive, keyboard-focus visible, and respects `prefers-reduced-motion`.
+
+## License
+
+MIT — feel free to fork the structure for your own portfolio; please swap out the content in `lib/data.ts` first.
